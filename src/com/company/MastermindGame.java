@@ -68,6 +68,9 @@ public class MastermindGame {
                 break;
             }
 
+            if (input.isEmpty()){
+                System.out.println("Vul iets in... Of voer q in om te stoppen.");
+            }
             char[] playerCode = input.toCharArray();
 
             if (inValidCheck(playerCode)) {
