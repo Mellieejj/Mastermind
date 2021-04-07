@@ -15,7 +15,7 @@ public class SecretCode {
     }
 
     private int randomIndex() {
-        return random.nextInt(letters.length - 1);
+        return random.nextInt(letters.length);
     }
 
     public char[] getCode() {

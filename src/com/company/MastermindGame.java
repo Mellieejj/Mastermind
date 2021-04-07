@@ -7,7 +7,7 @@ public class MastermindGame {
     SecretCode code;
     Scanner scanner = new Scanner(System.in);
 
-    public void newGame() {
+    public MastermindGame() {
         this.code = new SecretCode();
 //        System.out.println(code);
     }
