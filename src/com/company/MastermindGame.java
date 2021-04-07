@@ -1,5 +1,6 @@
 package com.company;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -11,7 +12,6 @@ public class MastermindGame {
         this.code = new SecretCode();
 //        System.out.println(code);
     }
-
 
     private boolean inValidCheck(char[] tryCode) {
         boolean invalid = false;
@@ -29,6 +29,28 @@ public class MastermindGame {
         return invalid;
     }
 
+    private void codeChecker(char[] tryCode) {
+        char[] correctCode = code.getCode();
+        int rightPlace = 0;
+        int wrongPlace = 0;
+
+        for (int i = 0; i < tryCode.length; i++) {
+            if (correctCode[i] == tryCode[i]) {
+                rightPlace++;
+            } else if (new String(correctCode).indexOf(tryCode[i]) != -1) {
+                wrongPlace++;
+            }
+        }
+
+        if (rightPlace != 0) {
+            System.out.println("Het aantal correcte letters op de juiste plaats -> " + rightPlace);
+        }
+
+        if (wrongPlace != 0) {
+            System.out.println("Het aantal correcte letters niet op de juiste plaats ->  " + wrongPlace);
+        }
+    }
+
     private boolean winner(char[] tryCode) {
         return Arrays.equals(code.getCode(), tryCode);
     }
@@ -37,11 +59,12 @@ public class MastermindGame {
         System.out.println("Probeer de code te kraken! Keuze uit a, b, c, d, e, f.");
 
         while (true) {
-            System.out.println("Voer code van 4 letters in:");
+            System.out.println("Voer code van 4 letters zonder spaties in:");
             String input = scanner.nextLine();
 
             if (input.equals("q")) {
-                System.out.println("Spel is gestopt! ");
+                System.out.println("Spel is gestopt!");
+                System.out.println("De code was " + Arrays.toString(code.getCode()));
                 break;
             }
 
@@ -54,6 +77,7 @@ public class MastermindGame {
 
             System.out.println(Arrays.toString(playerCode));
 
+            codeChecker(playerCode);
             if (winner(playerCode)) {
                 System.out.println("Je hebt de code gekraakt! Je hebt gewonnen.");
                 break;
