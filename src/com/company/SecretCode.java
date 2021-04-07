@@ -18,8 +18,12 @@ public class SecretCode {
         return random.nextInt(letters.length - 1);
     }
 
+    public char[] getCode() {
+        return this.code;
+    }
+
     @Override
     public String toString() {
-        return Arrays.toString(this.code);
+        return "Code: " + Arrays.toString(this.code);
     }
 }
